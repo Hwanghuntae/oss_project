@@ -1,16 +1,30 @@
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+import chromedriver_autoinstaller
 
 url = "https://smallman.co.kr/product/list.html?cate_no=5018"
-response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
-html = response.text
 
 
-soup = BeautifulSoup(html, 'html.parser')
-
-title = soup.title.text
-print("웹 페이지 제목:", title)
+chromedriver_autoinstaller.install()
+driver = webdriver.Chrome()
 
 
+driver.get(url)
+driver.implicitly_wait(time_to_wait=5)
+page = driver.page_source
+soup = BeautifulSoup(page, "html.parser")
+
+sizes = soup.select(".sp-product-box")
 
 
+for size in sizes:
+  divs = size.find_all(attrs={'class': "sp-product-item-thumb-href"})
+  for div in divs:
+    print(div)
+    
+
+
+
+
+  
