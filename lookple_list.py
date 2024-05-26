@@ -40,31 +40,55 @@ def get_size(link_list,name_list):
   for div in div_tags:
     if "총장" in div.text.strip():
       size_list.append(div.text.strip())  
-  print(size_list)
   return "complete getting size data"
 
 
 
-
+print('test getting products list data')
 print(get_list(main_url))
 print()
-print(name_list[0])
-print(img_list[0])
-print(link_list[0])
+print('상품 이름 리스트 출력')
+for name in name_list:
+  print(name)
+
 print()
+print()
+
+print('상품 이미지 사진 링크 출력')
+for img_link in img_list:
+  print(img_link)
+  
+print()
+print()
+
+print('상품 링크 출력')
+for link in link_list:
+  print(link)
+
+print()
+print() 
+
+print('상품 사이즈 데이터 기져오기')
+print(get_size(link_list[0], name_list[0]))
 print(get_size(link_list[1], name_list[1]))
+print(get_size(link_list[2], name_list[2]))
 print(size_list)
+
+print()
+print()
    
-test_dic = {name_list[0]: None}
+test_dic = {name_list[2]: None}
 temp_size_list = list()
 for i in size_list:
   temp_size_list.append(i)
-test_dic = {name_list[0]:temp_size_list}
+test_dic = {name_list[2]:temp_size_list}
 size_dic_list.append(test_dic)
+
+
 
 print(size_dic_list)
 
-# dictionery형태로 key : 상품이름 value : [이름 : 사이즈] 형태로 저장
+# 
 
 
 
